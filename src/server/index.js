@@ -64,7 +64,7 @@ var fs = require('fs');
 var options = {
     'method': 'POST',
     'hostname': 'api.meaningcloud.com',
-    'path': '/sentiment-2.1?key=5de29e783641a0b64374707ebc8f4b5e&lang=en&txt=<text>&model=<model>',
+    'path': '/sentiment-2.1?key=5de29e783641a0b64374707ebc8f4b5e&lang=en&txt=<text>&model=nlp-project',
     'headers': {},
     'maxRedirects': 20
 };
