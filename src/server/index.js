@@ -19,7 +19,11 @@ app.use(bodyParser.urlencoded({
     extended: true
 }))
 
-app.use(express.static('dist'))
+// Initialize the main project folder
+app.use(express.static(__dirname + 'dist'))
+
+app.post('/addData', addData);
+app.get('/all', sendData);
 
 console.log(JSON.stringify(mockAPIResponse))
 

@@ -15,7 +15,6 @@ import './styles/header.scss'
 console.log(checkForName);
 
 alert("I EXIST")
-console.log("CHANGE!!");
 
 export {
     checkForName,
@@ -26,7 +25,7 @@ export {
 const performAction = async (e) => {
     const newAnalysis = document.getElementById('analysis').value;
     const data = await getAnalyzedDataFromAPI(newAnalysis);
-    postDataToServer(data.main.temp);
+    postDataToServer(data.main.analysis);
     getRecentEntryData();
 }
 

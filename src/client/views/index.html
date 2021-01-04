@@ -28,7 +28,7 @@
             <section>
                 <h2>Check if your name is on our prestigious list</h2>
                 <form class="" onsubmit="return Client.handleSubmit(event)">
-                    <input id="name" type="text" name="input" value="" onblur="onBlur()" placeholder="Name">
+                    <input id="name" type="text" name="input" value="" placeholder="Name">
                     <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)"
                         onsubmit="return handleSubmit(event)">
                 </form>
@@ -41,7 +41,7 @@
 
             <section>
                 <h2>Get any article analyzed right HERE</h2>
-                <form class="holder analysis">
+                <form class="">
                     <label for="analysis">Copy the article you'd like to be analyzed below:</label>
                     <input type="text" id="analysis" placeholder="paste your article here">
                     <button id="generate" type="submit"> Generate </button>
@@ -49,12 +49,8 @@
             </section>
 
             <section>
-                <form class="holder entry">
-                    <div class="title">Here' your article sentiment analysis:</div>
-                    <div id="entryHolder">
-                        <div id="content"></div>
-                    </div>
-                </form>
+                <strong>Here' your article sentiment analysis:</strong>
+                <div id="content"></div>
             </section>
 
         </main>
