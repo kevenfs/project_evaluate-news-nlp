@@ -4,9 +4,6 @@ import {
 import {
     handleSubmit
 } from './js/formHandler'
-import {
-    handleData
-} from './js/nlpAnalyzer'
 
 import './styles/resets.scss'
 import './styles/base.scss'
@@ -22,6 +19,68 @@ console.log("CHANGE!!");
 
 export {
     checkForName,
-    handleSubmit,
-    handleData
+    handleSubmit
 }
+
+/* Function called by second event listener */
+const performAction = async (e) => {
+    const newAnalysis = document.getElementById('analysis').value;
+    const data = await getAnalyzedDataFromAPI(newAnalysis);
+    postDataToServer(data.main.temp);
+    getRecentEntryData();
+}
+
+const getAnalyzedDataFromAPI = async (analysis) => {
+
+    const res = await fetch(analysis)
+    try {
+
+        const data = await res.json();
+        console.log(data)
+        return data;
+    } catch (error) {
+        console.log("error", error);
+        // appropriately handle the error
+    }
+}
+
+const postDataToServer = async (analysis) => {
+
+    const res = await fetch('http://localhost:8081/addData',
+
+        {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                analysis: document.getElementById('analysis').value
+            })
+        });
+    try {
+
+        const data = await res.json();
+        console.log(data)
+        return data;
+    } catch (error) {
+        console.log("error", error);
+        // appropriately handle the error
+    }
+}
+
+const getRecentEntryData = async () => {
+
+    const request = await fetch('http://localhost:8081/all');
+    try {
+        const allData = await request.json();
+        console.log('All data is :');
+        console.log(allData);
+        document.getElementById('content').innerHTML = allData.analysis;
+    } catch (error) {
+        console.log('Error', error);
+    }
+}
+
+// Event listener to add function to existing HTML DOM element
+document.getElementById('generate').addEventListener('click', performAction);

@@ -4,12 +4,12 @@
     <head>
         <meta charset="utf-8">
         <title>Test</title>
-        <link rel="stylesheet" href="/styles/resets.scss">
-        <link rel="stylesheet" href="/styles/base.scss">
-        <link rel="stylesheet" href="/styles/button.scss">
-        <link rel="stylesheet" href="/styles/header.scss">
-        <link rel="stylesheet" href="/styles/form.scss">
-        <link rel="stylesheet" href="/styles/footer.scss">
+        <link rel="stylesheet" type="text/css" href="/styles/resets.scss">
+        <link rel="stylesheet" type="text/css" href="/styles/base.scss">
+        <link rel="stylesheet" type="text/css" href="/styles/button.scss">
+        <link rel="stylesheet" type="text/css" href="/styles/header.scss">
+        <link rel="stylesheet" type="text/css" href="/styles/form.scss">
+        <link rel="stylesheet" type="text/css" href="/styles/footer.scss">
     <link href="main.css" rel="stylesheet"></head>
 
     <body>
@@ -38,16 +38,20 @@
             </section>
 
             <section>
-                <form class="" onsubmit="return Client.handleData(event)">
-                    <input id="analysis" type="text" name="input" value="" onblur="onBlur()" placeholder="Analytics">
-                    <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)"
-                        onsubmit="return handleData(event)">
+                <form class="holder analysis">
+                    <label for="analysis">Enter anything you'd like to be analyzed below:</label>
+                    <input type="text" id="analysis" placeholder="enter any type of text here">
+                    <button id="generate" type="submit"> Generate </button>
                 </form>
             </section>
 
             <section>
-                <strong>Sentiment analysis:</strong>
-                <div id="sentiment"></div>
+                <form class="holder entry">
+                    <div class="title">Here' your sentiment analysis:</div>
+                    <div id="entryHolder">
+                        <div id="content"></div>
+                    </div>
+                </form>
             </section>
 
         </main>

@@ -36,7 +36,28 @@ app.get('/test', function (req, res) {
     res.json(mockAPIResponse)
 })
 
-// sentiment analysis
+// Callback function to complete GET '/all'
+
+function sendData(request, response) {
+    response.send(projectData);
+};
+
+// Post Function
+
+function addData(request, response) {
+
+    let data = request.body;
+
+    console.log('server side data ', data)
+
+    // analysis -> user's input
+
+    projectData["analysis"] = data.analysis;
+
+    response.send(projectData);
+}
+
+// Sentiment analysis API (Meaning Cloud)
 var https = require('follow-redirects').https;
 var fs = require('fs');
 
