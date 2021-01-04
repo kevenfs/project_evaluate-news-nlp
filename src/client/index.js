@@ -4,6 +4,9 @@ import {
 import {
     handleSubmit
 } from './js/formHandler'
+import {
+    handleData
+} from './js/nlpAnalyzer'
 
 import './styles/resets.scss'
 import './styles/base.scss'
@@ -19,5 +22,6 @@ console.log("CHANGE!!");
 
 export {
     checkForName,
-    handleSubmit
+    handleSubmit,
+    handleData
 }
