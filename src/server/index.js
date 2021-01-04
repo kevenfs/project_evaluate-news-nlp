@@ -35,3 +35,34 @@ app.listen(8081, function () {
 app.get('/test', function (req, res) {
     res.json(mockAPIResponse)
 })
+
+// sentiment analysis
+var https = require('follow-redirects').https;
+var fs = require('fs');
+
+var options = {
+    'method': 'POST',
+    'hostname': 'api.meaningcloud.com',
+    'path': '/sentiment-2.1?key=5de29e783641a0b64374707ebc8f4b5e&lang=en&txt=<text>&model=<model>',
+    'headers': {},
+    'maxRedirects': 20
+};
+
+var req = https.request(options, function (res) {
+    var chunks = [];
+
+    res.on("data", function (chunk) {
+        chunks.push(chunk);
+    });
+
+    res.on("end", function (chunk) {
+        var body = Buffer.concat(chunks);
+        console.log(body.toString());
+    });
+
+    res.on("error", function (error) {
+        console.error(error);
+    });
+});
+
+req.end();

@@ -8,9 +8,15 @@ function checkForName(inputText) {
         "Georgiou"
     ]
 
-    if(names.includes(inputText)) {
+    if (names.includes(inputText)) {
         alert("Welcome, Captain!")
+    } else {
+        console.log("error", error);
     }
+    // appropriately handle the error
 }
 
-export { checkForName }
+
+export {
+    checkForName
+}

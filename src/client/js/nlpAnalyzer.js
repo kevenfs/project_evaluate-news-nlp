@@ -2,8 +2,8 @@ function handleData(event) {
     event.preventDefault()
 
     // check what text was put into the form field
-    let formText = document.getElementById('text').value
-    Client.checkForName(formText)
+    let formText = document.getElementById('analysis').value
+    Client.inputAnalysis(formText)
 
     console.log("::: Form Submitted :::")
     fetch('http://localhost:8081/test')

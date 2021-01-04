@@ -38,20 +38,17 @@
             </section>
 
             <section>
-                <form class="holder analysis">
-                    <label for="entry">What would you like to be analyzed</label>
-                    <textarea type="text" id="entry" placeholder="Type anything here"></textarea>
-                    <button id="generate" type="submit"> Generate </button>
+                <form class="" onsubmit="return Client.handleData(event)">
+                    <input id="analysis" type="text" name="input" value="" onblur="onBlur()" placeholder="Analytics">
+                    <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)"
+                        onsubmit="return handleData(event)">
                 </form>
             </section>
 
             <section>
-                <div class="holder entry">
-                    <div class="title">Your Result:</div>
-                    <div id="entryHolder">
-                        <div id="analysis"></div>
-                    </div>
-                </div>
+                <strong>Sentiment analysis:</strong>
+                <div id="sentiment"></div>
+            </section>
 
         </main>
 
