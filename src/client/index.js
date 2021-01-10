@@ -7,6 +7,9 @@ import {
 import {
     handleSubmitForm2
 } from './js/formHandler2'
+import {
+    analyzeArticle
+} from './js/analyzeArticle'
 
 import './styles/resets.scss'
 import './styles/base.scss'
@@ -22,7 +25,8 @@ alert("I EXIST")
 export {
     checkForName,
     handleSubmitForm1,
-    handleSubmitForm2
+    handleSubmitForm2,
+    analyzeArticle
 }
 
 /* Function called by second event listener */

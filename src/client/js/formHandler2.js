@@ -4,7 +4,7 @@ function handleSubmitForm2(event) {
     // check what text was put into the form field
     let formText = document.getElementById('article').value
 
-    Client.nameChecker(formText)
+    Client.analyzeArticle(formText)
 
     console.log("::: Form Submitted :::")
     fetch('http://localhost:8081/test')
