@@ -1,10 +1,10 @@
-function handleSubmitForm1(event) {
+function handleSubmitForm2(event) {
     event.preventDefault()
 
     // check what text was put into the form field
-    let formText = document.getElementById('name').value
+    let formText = document.getElementById('article').value
 
-    Client.checkForName(formText)
+    Client.getAnalyzedDataFromAPI(formText)
 
     console.log("::: Form Submitted :::")
     fetch('http://localhost:8081/test')
@@ -12,10 +12,10 @@ function handleSubmitForm1(event) {
             return res.json()
         })
         .then(function (data) {
-            document.getElementById('results').innerHTML = data.message
+            document.getElementById('content').innerHTML = data.message
         })
 }
 
 export {
-    handleSubmitForm1
+    handleSubmitForm2
 }

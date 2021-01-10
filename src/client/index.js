@@ -2,8 +2,11 @@ import {
     checkForName
 } from './js/nameChecker'
 import {
-    handleSubmit
+    handleSubmitForm1
 } from './js/formHandler'
+import {
+    handleSubmitForm2
+} from './js/formHandler2'
 
 import './styles/resets.scss'
 import './styles/base.scss'
@@ -18,7 +21,8 @@ alert("I EXIST")
 
 export {
     checkForName,
-    handleSubmit
+    handleSubmitForm1,
+    handleSubmitForm2
 }
 
 /* Function called by second event listener */
@@ -29,9 +33,9 @@ const performAction = async (e) => {
     getRecentEntryData();
 }
 
-const getAnalyzedDataFromAPI = async (analysis) => {
+const getAnalyzedDataFromAPI = async (article) => {
 
-    const res = await fetch(analysis)
+    const res = await fetch(article)
     try {
 
         const data = await res.json();

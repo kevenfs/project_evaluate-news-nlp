@@ -27,10 +27,10 @@
             <h1>WELCOME TO THIS WONDERFUL PROJECT!</h1>
             <section>
                 <h2>Check if your name is on our prestigious list</h2>
-                <form class="" onsubmit="return Client.handleSubmit(event)">
+                <form class="" onsubmit="return Client.handleSubmitForm1(event)">
                     <input id="name" type="text" name="input" value="" placeholder="Name">
-                    <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)"
-                        onsubmit="return handleSubmit(event)">
+                    <input type="submit" name="" value="submit" onclick="return Client.handleSubmitForm1(event)"
+                        onsubmit="return handleSubmitForm1(event)">
                 </form>
             </section>
 
@@ -41,10 +41,11 @@
 
             <section>
                 <h2>Get any article analyzed right HERE</h2>
-                <form class="">
-                    <label for="analysis">Copy the article you'd like to be analyzed below:</label>
-                    <input type="text" id="analysis" placeholder="paste your article here">
-                    <button id="generate" type="submit"> Generate </button>
+                <form class="" onsubmit="return Client.handleSubmitForm2(event)">
+                    <h3>Copy the article you'd like to be analyzed below:</h3>
+                    <input type="article" id="analysis" value="" placeholder="paste your article here">
+                    <input id="generate" type="submit" name="" value="generate"
+                        onclick="return Client.handleSubmitForm2(event)" onsubmit="return handleSubmitForm2(event)">
                 </form>
             </section>
 
