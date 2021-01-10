@@ -27,7 +27,7 @@ export {
 
 /* Function called by second event listener */
 const performAction = async (e) => {
-    const newAnalysis = document.getElementById('analysis').value;
+    const newAnalysis = document.getElementById('article').value;
     const data = await getAnalyzedDataFromAPI(newAnalysis);
     postDataToServer(data.main.analysis);
     getRecentEntryData();
@@ -58,7 +58,7 @@ const postDataToServer = async (analysis) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                analysis: document.getElementById('analysis').value
+                analysis: analysis
             })
         });
     try {
@@ -86,4 +86,4 @@ const getRecentEntryData = async () => {
 }
 
 // Event listener to add function to existing HTML DOM element
-document.getElementById('generate').addEventListener('click', performAction);
+document.getElementById('article').addEventListener('click', performAction);

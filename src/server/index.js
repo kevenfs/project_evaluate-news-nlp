@@ -56,7 +56,7 @@ function addData(request, response) {
 
     // analysis -> user's input
 
-    projectData["analysis"] = data.analysis;
+    projectData["article"] = data.analysis;
 
     response.send(projectData);
 }
