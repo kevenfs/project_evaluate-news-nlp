@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({
 }))
 
 // Initialize the main project folder
-app.use(express.static(__dirname + 'dist'))
+app.use(express.static(__dirname + '/../../dist'))
 
 app.post('/addData', addData);
 app.get('/all', sendData);
@@ -28,8 +28,10 @@ app.get('/all', sendData);
 console.log(JSON.stringify(mockAPIResponse))
 
 app.get('/', function (req, res) {
-    res.sendFile('dist/index.html')
+    res.sendFile(__dirname + '/../../dist/index.html')
 })
+
+console.log(__dirname);
 
 // designates what port the app will listen to for incoming requests
 app.listen(8081, function () {

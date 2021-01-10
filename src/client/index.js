@@ -20,8 +20,6 @@ import './styles/header.scss'
 
 console.log(checkForName);
 
-alert("I EXIST")
-
 export {
     checkForName,
     handleSubmitForm1,
