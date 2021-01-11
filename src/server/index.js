@@ -64,12 +64,15 @@ function addData(request, response) {
 }
 
 // Sentiment analysis API (Meaning Cloud)
+var https = require('follow-redirects').https;
 var fs = require('fs');
+
+require('dotenv').config()
 
 var options = {
     'method': 'POST',
     'hostname': 'api.meaningcloud.com',
-    'path': '/sentiment-2.1?key=5de29e783641a0b64374707ebc8f4b5e&lang=en&txt=<text>&model=nlp-project',
+    'path': '/sentiment-2.1?key=SECRET_KEY&lang=en&txt=<text>&model=nlp-project',
     'headers': {},
     'maxRedirects': 20
 };

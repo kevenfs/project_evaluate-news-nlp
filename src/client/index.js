@@ -84,8 +84,6 @@ const getRecentEntryData = async () => {
         document.getElementById('content').innerHTML = allData.analysis;
     } catch (error) {
         console.log('Error', error);
-
-        var https = require('follow-redirects').https;
     }
 }
 
