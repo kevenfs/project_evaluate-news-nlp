@@ -64,7 +64,6 @@ function addData(request, response) {
 }
 
 // Sentiment analysis API (Meaning Cloud)
-var https = require('follow-redirects').https;
 var fs = require('fs');
 
 var options = {
