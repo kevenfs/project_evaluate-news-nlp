@@ -4,6 +4,18 @@ function handleSubmitForm1(event) {
     // check what text was put into the form field
     let formText = document.getElementById('name').value
 
+    fetch('http://localhost:8081/test', {
+        method: "POST",
+        credentials: 'same-origin',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            formText: formText
+        }),
+
+    });
+
     Client.checkForName(formText)
 
     console.log("::: Form Submitted :::")
@@ -12,7 +24,7 @@ function handleSubmitForm1(event) {
             return res.json()
         })
         .then(function (data) {
-            document.getElementById('results').innerHTML = data.message
+            document.getElementById('name_list').innerHTML = data.message
         })
 }
 
