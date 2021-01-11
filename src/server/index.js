@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({
 }))
 
 // Initialize the main project folder
-app.use(express.static(__dirname + '/../../dist'))
+app.use(express.static('dist'))
 
 app.post('/addData', addData);
 app.get('/all', sendData);
@@ -28,7 +28,7 @@ app.get('/all', sendData);
 console.log(JSON.stringify(mockAPIResponse))
 
 app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/../../dist/index.html')
+    res.sendFile(__dirname + 'dist/index.html')
 })
 
 console.log(__dirname);
