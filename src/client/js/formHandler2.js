@@ -4,6 +4,18 @@ function handleSubmitForm2(event) {
     // check what text was put into the form field
     let formText = document.getElementById('article').value
 
+    fetch('http://localhost:8081/test', {
+        method: "POST",
+        credentials: 'same-origin',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            formText: formText
+        }),
+
+    });
+
     Client.analyzeArticle(formText)
 
     console.log("::: Form Submitted :::")
@@ -12,7 +24,7 @@ function handleSubmitForm2(event) {
             return res.json()
         })
         .then(function (data) {
-            document.getElementById('content').innerHTML = data.message
+            document.getElementById('sentiment_analysis').innerHTML = data.message
         })
 }
 
