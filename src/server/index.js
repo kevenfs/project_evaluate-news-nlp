@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 var path = require('path')
 const express = require('express')
 const mockAPIResponse = require('./mockAPI.js')
@@ -64,34 +66,39 @@ function addData(request, response) {
 }
 
 // Sentiment analysis API (Meaning Cloud)
-var https = require('follow-redirects').https;
-var fs = require('fs');
 
-require('dotenv').config()
+function sentimentAnalysis(request, response) {
+    var https = require('follow-redirects').https;
+    var fs = require('fs');
 
-var options = {
-    'method': 'POST',
-    'hostname': 'api.meaningcloud.com',
-    'path': '/sentiment-2.1?key=SECRET_KEY&lang=en&txt=<text>&model=nlp-project',
-    'headers': {},
-    'maxRedirects': 20
-};
+    var options = {
+        'method': 'POST',
+        'hostname': 'api.meaningcloud.com',
+        'path': '/sentiment-2.1?key=' + process.env.API_KEY + '&lang=en&txt=<text>&model=nlp-project',
+        'headers': {},
+        'maxRedirects': 20
+    };
 
-var req = https.request(options, function (res) {
-    var chunks = [];
 
-    res.on("data", function (chunk) {
-        chunks.push(chunk);
+    var req = https.request(options, function (res) {
+        var chunks = [];
+
+        res.on("data", function (chunk) {
+            chunks.push(chunk);
+        });
+
+        res.on("end", function (chunk) {
+            var body = Buffer.concat(chunks);
+            console.log(body.toString());
+            response.send(body);
+        });
+
+        res.on("error", function (error) {
+            console.error(error);
+        });
     });
 
-    res.on("end", function (chunk) {
-        var body = Buffer.concat(chunks);
-        console.log(body.toString());
-    });
+    req.end();
 
-    res.on("error", function (error) {
-        console.error(error);
-    });
-});
 
-req.end();
+}
