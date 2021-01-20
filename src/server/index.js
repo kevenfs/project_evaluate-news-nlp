@@ -24,6 +24,7 @@ app.use(express.static('dist'))
 
 app.post('/addData', addData);
 app.get('/all', sendData);
+app.post('/sentiment', sentimentAnalysis);
 
 app.get('/', function (req, res) {
     res.sendFile(__dirname + 'dist/index.html')

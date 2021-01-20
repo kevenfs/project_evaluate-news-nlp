@@ -36,7 +36,17 @@ function handleSubmitForm2(event) {
 
     console.log("::: Form Submitted :::")
 
-    fetch('http://localhost:8081/test')
+    fetch('http://localhost:8081/sentiment', {
+            method: "POST",
+            credentials: 'same-origin',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                formText: formText
+            }),
+
+        })
         .then(res => {
             return res.json()
         })
