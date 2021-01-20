@@ -4,7 +4,10 @@
             "targets": {
                 "browsers": ["last 2 chrome versions"]
             },
-            "useBuiltIns": "entry"
+            "useBuiltIns": "entry",
+            "corejs": {
+                "version": "3.0"
+            }
         }]
     ]
 }

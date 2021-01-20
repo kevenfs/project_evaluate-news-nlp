@@ -6,16 +6,14 @@ const mockAPIResponse = require('./mockAPI.js')
 var bodyParser = require('body-parser')
 var cors = require('cors')
 
-var json = {
-    'title': 'test json response',
-    'message': 'this is a message',
-    'time': 'now'
-}
 
 const app = express()
+
 app.use(cors())
+
 // to use json
 app.use(bodyParser.json())
+
 // to use url encoded values
 app.use(bodyParser.urlencoded({
     extended: true
@@ -27,18 +25,16 @@ app.use(express.static('dist'))
 app.post('/addData', addData);
 app.get('/all', sendData);
 
-console.log(JSON.stringify(mockAPIResponse))
-
 app.get('/', function (req, res) {
     res.sendFile(__dirname + 'dist/index.html')
 })
-
-console.log(__dirname);
 
 // designates what port the app will listen to for incoming requests
 app.listen(8081, function () {
     console.log('Example app listening on port 8081!')
 })
+
+const projectData = []
 
 app.get('/test', function (req, res) {
     res.json(mockAPIResponse)
@@ -60,7 +56,7 @@ function addData(request, response) {
 
     // analysis -> user's input
 
-    projectData["article"] = data.analysis;
+    projectData.push(data.analysis);
 
     response.send(projectData);
 }

@@ -2,32 +2,17 @@ import {
     checkForName
 } from './js/nameChecker'
 import {
-    handleSubmitForm1
-} from './js/formHandler'
-import {
+    handleSubmitForm1,
     handleSubmitForm2
-} from './js/formHandler2'
+} from './js/formHandlers'
 import {
     analyzeArticle
 } from './js/analyzeArticle'
 
-import './styles/resets.scss'
-import './styles/base.scss'
-import './styles/button.scss'
-import './styles/footer.scss'
-import './styles/form.scss'
-import './styles/header.scss'
-
-console.log(checkForName);
-
-export {
-    checkForName,
-    handleSubmitForm1,
-    handleSubmitForm2,
-    analyzeArticle
-}
+const fetch = require("node-fetch");
 
 /* Function called by second event listener */
+
 const performAction = async (e) => {
     const newAnalysis = document.getElementById('article').value;
     const data = await getAnalyzedDataFromAPI(newAnalysis);
@@ -35,17 +20,21 @@ const performAction = async (e) => {
     getRecentEntryData();
 }
 
+
 const getAnalyzedDataFromAPI = async (article) => {
 
     const res = await fetch(article)
-    try {
 
+    try {
         const data = await res.json();
-        console.log(data)
         return data;
     } catch (error) {
         console.log("error", error);
-        // appropriately handle the error
+
+        return Promise.reject({
+            message: 'Call did not work properly',
+            error: error,
+        });
     }
 }
 
@@ -63,14 +52,19 @@ const postDataToServer = async (analysis) => {
                 analysis: analysis
             })
         });
+
     try {
 
         const data = await res.json();
-        console.log(data)
+
         return data;
     } catch (error) {
         console.log("error", error);
-        // appropriately handle the error
+
+        return Promise.reject({
+            message: 'Call did not work properly',
+            error: error,
+        });
     }
 }
 
@@ -79,13 +73,32 @@ const getRecentEntryData = async () => {
     const request = await fetch('http://localhost:8081/all');
     try {
         const allData = await request.json();
+
         console.log('All data is :');
         console.log(allData);
         document.getElementById('content').innerHTML = allData.analysis;
     } catch (error) {
-        console.log('Error', error);
+        console.log("error", error);
+
+        return Promise.reject({
+            message: 'Call did not work properly',
+            error: error,
+        });
     }
 }
 
 // Event listener to add function to existing HTML DOM element
-document.getElementById('article').addEventListener('click', performAction);
+if (document.getElementById('article')) {
+    document.getElementById('article').addEventListener('click', performAction);
+}
+
+export {
+    checkForName,
+    handleSubmitForm1,
+    handleSubmitForm2,
+    analyzeArticle,
+    getAnalyzedDataFromAPI,
+    postDataToServer,
+    getRecentEntryData
+
+}
