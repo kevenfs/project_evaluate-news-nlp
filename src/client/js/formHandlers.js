@@ -1,32 +1,29 @@
+import {
+    checkForName
+} from './nameChecker'
+
+function getAnswerFromName(name) {
+    var answer = "Sorry, your name is not in the list"
+
+    if (checkForName(name)) {
+        answer = "Welcome captain! Your name is in the list"
+    }
+
+    return answer
+}
+
+
 function handleSubmitForm1(event) {
     event.preventDefault()
 
     // check what text was put into the form field
     let formText = document.getElementById('name').value
 
-    fetch('http://localhost:8081/test', {
-        method: "POST",
-        credentials: 'same-origin',
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            formText: formText
-        }),
+    var result = getAnswerFromName(formText)
 
-    });
+    document.getElementById('name_list').innerHTML = result
 
-    Client.checkForName(formText)
-
-    console.log("::: Form Submitted :::")
-
-    fetch('http://localhost:8081/test')
-        .then(res => {
-            return res.json()
-        })
-        .then(function (data) {
-            document.getElementById('name_list').innerHTML = data.message
-        })
+    return result
 }
 
 function handleSubmitForm2(event) {
@@ -34,18 +31,6 @@ function handleSubmitForm2(event) {
 
     // check what text was put into the form field
     let formText = document.getElementById('article').value
-
-    fetch('http://localhost:8081/test', {
-        method: "POST",
-        credentials: 'same-origin',
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            formText: formText
-        }),
-
-    });
 
     Client.analyzeArticle(formText)
 
@@ -62,5 +47,6 @@ function handleSubmitForm2(event) {
 
 export {
     handleSubmitForm1,
-    handleSubmitForm2
+    handleSubmitForm2,
+    getAnswerFromName
 }
