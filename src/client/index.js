@@ -63,8 +63,8 @@ const postDataToServer = async (analysis) => {
     try {
 
         const data = await res.json();
-
         return data;
+
     } catch (error) {
         console.log("error", error);
 

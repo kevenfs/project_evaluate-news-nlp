@@ -26,33 +26,50 @@ function handleSubmitForm1(event) {
     return result
 }
 
-function handleSubmitForm2(event) {
+const handleSubmitForm2 = async (event) => {
     event.preventDefault()
 
     // check what text was put into the form field
     let formText = document.getElementById('article').value
 
-    Client.analyzeArticle(formText)
-
     console.log("::: Form Submitted :::")
 
-    fetch('http://localhost:8081/sentiment', {
-            method: "POST",
-            credentials: 'same-origin',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                formText: formText
-            }),
 
+    const res = await fetch('http://localhost:8081/sentiment', {
+        method: "POST",
+        credentials: 'same-origin',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            formText: formText
         })
-        .then(res => {
-            return res.json()
-        })
-        .then(function (data) {
-            document.getElementById('sentiment_analysis').innerHTML = data.message
-        })
+    });
+
+    try {
+
+        const data = await res.json();
+
+        console.log(data)
+
+        document.getElementById('sentiment_analysis').innerHTML = `
+            Subjectivity = ${data.subjectivity} </br>
+            Agreement = ${data.agreement} </br>
+            Confidence= ${data.confidence} </br>
+            Irony= ${data.irony} </br>
+        `
+
+        return data;
+
+    } catch (error) {
+        console.log("error", error);
+
+        return Promise.reject({
+            message: 'Call did not work properly',
+            error: error
+        });
+    }
+
 }
 
 export {

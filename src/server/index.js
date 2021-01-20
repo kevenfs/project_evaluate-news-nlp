@@ -68,14 +68,15 @@ function sentimentAnalysis(request, response) {
     var https = require('follow-redirects').https;
     var fs = require('fs');
 
+    const text = escape(request.body.formText)
+
     var options = {
         'method': 'POST',
         'hostname': 'api.meaningcloud.com',
-        'path': '/sentiment-2.1?key=' + process.env.API_KEY + '&lang=en&txt=<text>&model=nlp-project',
+        'path': `/sentiment-2.1?key=${process.env.API_KEY}&lang=en&txt=${text}&model=nlp-project`,
         'headers': {},
         'maxRedirects': 20
     };
-
 
     var req = https.request(options, function (res) {
         var chunks = [];
@@ -87,7 +88,7 @@ function sentimentAnalysis(request, response) {
         res.on("end", function (chunk) {
             var body = Buffer.concat(chunks);
             console.log(body.toString());
-            response.send(body);
+            response.send(body.toString());
         });
 
         res.on("error", function (error) {
@@ -96,6 +97,5 @@ function sentimentAnalysis(request, response) {
     });
 
     req.end();
-
 
 }
